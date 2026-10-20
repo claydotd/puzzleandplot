@@ -71,7 +71,9 @@ export default function Nav() {
                 }
                 onClick={() => setOpen(false)}
               >
-                {label}
+                <span className="site-nav__tab">
+                  <span className="site-nav__label">{label}</span>
+                </span>
               </NavLink>
             </li>
           ))}

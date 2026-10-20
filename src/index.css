@@ -74,7 +74,19 @@ body {
   font-size: var(--font-size);
   line-height: var(--line-height);
   color: var(--color-text);
-  background: var(--color-bg);
+  background-color: var(--color-bg);
+}
+
+.site-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--color-bg);
+  background-image: url("/paper-texture-bg.jpg");
+  background-repeat: repeat;
+  background-size: 48rem auto;
+  background-blend-mode: multiply;
 }
 
 img,
@@ -133,6 +145,14 @@ button {
 
 .right-align {
   text-align: right;
+}
+
+.tagline {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--color-stamp);
 }
 
 /* —— Home —— */
@@ -336,11 +356,11 @@ button {
   position: relative;
   display: inline-block;
   padding: 0.48rem 0.9rem 0.4rem 1.2rem;
-  font-family: var(--font-labelmaker);
+  font-family: 'Impact Label Reversed', var(--font-labelmaker);
   font-size: 1.25rem;
   line-height: 1;
   text-decoration: none;
-  color: var(--color-ink);
+  color: var(--color-white);
   background: var(--color-brown-paper);
   /* File-folder tab: slanted shoulder, flat top, square bottom that meets the folder */
   clip-path: polygon(
@@ -363,9 +383,15 @@ button {
   background: var(--color-brown-mid);
 }
 
+.site-nav__label {
+  background-image: linear-gradient(var(--color-ink), var(--color-ink));
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
 .site-nav__link:hover,
 .site-nav__link:focus-visible {
-  color: var(--color-white);
   padding-bottom: 0.75rem;
 }
 
@@ -383,7 +409,7 @@ button {
 }
 
 /* Mobile nav */
-@media (max-width: 767px) {
+@media (max-width: 799px) {
   .logo-container {
     padding-bottom: 0.85rem;
   }
@@ -456,8 +482,6 @@ button {
   .site-nav__list > li {
     position: relative;
     width: 100%;
-    padding-left: calc(var(--space-sm) + var(--nav-step) * 1.5rem);
-    padding-right: var(--space-sm);
     transition: transform 0.2s ease;
   }
 
@@ -491,19 +515,36 @@ button {
     }
   }
 
-  .site-nav__link {
-    display: inline-block;
-  }
-
-  .site-nav__link:not(.site-nav__link--active)::after {
-    content: none;
-  }
-
+  .site-nav__link,
   .site-nav__link:hover,
   .site-nav__link:focus-visible,
   .site-nav__link--active,
   .site-nav__link--active:hover,
   .site-nav__link--active:focus-visible {
-    padding-bottom: 0.4rem;
+    display: block;
+    width: 100%;
+    padding: 0;
+    padding-left: calc(var(--space-sm) + var(--nav-step) * 1.5rem);
+    padding-right: var(--space-sm);
+    background: transparent;
+    clip-path: none;
+  }
+
+  .site-nav__tab {
+    display: inline-block;
+    padding: 0.48rem 0.9rem 0.4rem 1.2rem;
+    background: var(--color-brown-paper);
+    clip-path: polygon(
+      0.85rem 0,
+      calc(100% - 0.4rem) 0,
+      100% 0.4rem,
+      100% 100%,
+      0 100%,
+      0 0.95rem
+    );
+  }
+
+  .site-nav__link:not(.site-nav__link--active)::after {
+    content: none;
   }
 }

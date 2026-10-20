@@ -52,16 +52,18 @@ export default function Layout() {
         <Nav />
       </header>
 
-      <main className="site-main">
-        <Outlet />
-      </main>
+      <div className="site-body">
+        <main className="site-main">
+          <Outlet />
+        </main>
 
-      <footer className="site-footer">
-        <div className="site-footer__inner">
-          <p>&copy; {new Date().getFullYear()} Puzzle &amp; Plot</p>
-        </div>
-        <div className="credit">site made by <a href="https://analoguegonedigital.co.uk">analoguegonedigital.co.uk</a></div>
-      </footer>
+        <footer className="site-footer">
+          <div className="site-footer__inner">
+            <p>&copy; {new Date().getFullYear()} Puzzle &amp; Plot</p>
+          </div>
+          <div className="credit">site made by <a href="https://analoguegonedigital.co.uk">analoguegonedigital.co.uk</a></div>
+        </footer>
+      </div>
     </>
   )
 }
