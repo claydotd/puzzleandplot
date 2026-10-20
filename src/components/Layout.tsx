@@ -45,7 +45,7 @@ export default function Layout() {
       <header className="site-header" ref={headerRef}>
         <div className="logo-container">
           <Link to="/" className="site-logo">
-            <img src="/logo-white.png" alt="Puzzle & Plot" />
+            <img src={`${import.meta.env.BASE_URL}logo-white.png`} alt="Puzzle & Plot" />
           </Link>
           <p className="site-logo-subtitle">Riddles. Mysteries. Adventures.</p>
         </div>
