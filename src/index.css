@@ -26,16 +26,18 @@
 :root {
   --color-ink: #04090C;
   --color-steel: #736D66;
-  --color-paper: #CDC7BD;
+  --color-light-steel: #cec8c1;
+  --color-paper: #e0dbd2;
   --color-redwine: #590707;
   --color-stamp: #A30404;
   --color-brown-paper: #E2C397;
+  --color-brown-mid: #cba47a;
   --color-brown-shadow: #B48E69;
   --color-white: #FFFFFF;
   
   --color-text: var(--color-ink);
   --color-text-muted: var(--color-steel);
-  --color-bg: var(--color-paper);
+  --color-bg: var(--color-brown-paper);
   --color-border: var(--color-steel);
   --color-nav-bg: var(--color-paper);
   --color-accent: var(--color-stamp);
@@ -198,7 +200,8 @@ button {
   justify-content: center;
   width: 100%;
   padding-top: 1.25rem;
-  padding-bottom: 0.85rem;
+  /* Room for folder tabs that rise out of the nav bar */
+  padding-bottom: 2.6rem;
   padding-inline: var(--space-sm);
   transition: padding 0.35s ease;
 }
@@ -209,7 +212,7 @@ button {
 
 .site-header.is-collapsed .logo-container {
   padding-top: 0.5rem;
-  padding-bottom: 0.4rem;
+  padding-bottom: 2.35rem;
 }
 
 .site-logo {
@@ -276,10 +279,13 @@ button {
 
 /* —— Nav —— */
 .site-nav-bar {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  border-top: 1px solid var(--color-border);
-  border-bottom: 5px solid var(--color-brown-shadow);
-  background: var(--color-brown-paper);
+  /* Stops the tab row's negative margin from collapsing the bar upward */
+  padding-top: 1px;
+  border-bottom: 5px solid var(--color-brown-paper);
+  background: var(--color-brown-shadow);
 }
 
 .nav-toggle {
@@ -317,45 +323,97 @@ button {
 
 .site-nav__list {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  gap: var(--space-lg);
+  gap: 0.35rem;
   list-style: none;
-  padding-block: 0.65rem;
+  /* Pull the tabs up so they stand out of the folder into the header */
+  margin-top: -2.15rem;
+  padding: 0 0.75rem;
 }
 
 .site-nav__link {
+  position: relative;
+  display: inline-block;
+  padding: 0.48rem 0.9rem 0.4rem 1.2rem;
   font-family: var(--font-labelmaker);
   font-size: 1.25rem;
+  line-height: 1;
   text-decoration: none;
-  padding: 0.25rem 0;
-  border-bottom: 2px solid transparent;
+  color: var(--color-ink);
+  background: var(--color-brown-paper);
+  /* File-folder tab: slanted shoulder, flat top, square bottom that meets the folder */
+  clip-path: polygon(
+    0.85rem 0,
+    calc(100% - 0.4rem) 0,
+    100% 0.4rem,
+    100% 100%,
+    0 100%,
+    0 0.95rem
+  );
+}
+
+.site-nav__link:not(.site-nav__link--active)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0.3rem;
+  background: var(--color-brown-mid);
 }
 
 .site-nav__link:hover,
 .site-nav__link:focus-visible {
-  border-bottom-color: var(--color-white);
   color: var(--color-white);
+  padding-bottom: 0.75rem;
 }
 
-.site-nav__link--active {
-  border-bottom-color: var(--color-text);
-  font-size: 1.5rem;
+.site-nav__link--active,
+.site-nav__link--active:hover,
+.site-nav__link--active:focus-visible {
+  z-index: 1;
+  /* Extra paper below the label sits in the folder, so the whole tab rises */
+  padding-bottom: 1rem;
+}
+
+.site-nav__link:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 2px;
 }
 
 /* Mobile nav */
 @media (max-width: 767px) {
+  .logo-container {
+    padding-bottom: 0.85rem;
+  }
+
+  .site-header.is-collapsed .logo-container {
+    padding-bottom: 0.4rem;
+  }
+
   .site-nav-bar {
     position: relative;
     display: flex;
+    flex-direction: row;
     justify-content: flex-end;
     align-items: center;
     min-height: var(--nav-height);
+    padding-top: 0;
     padding-inline: var(--space-sm);
+    background: var(--color-light-steel);
+    border-bottom: 5px solid var(--color-steel);
   }
 
   .nav-toggle {
     display: flex;
+  }
+
+  .nav-toggle:hover {
+    background: var(--color-ink);
+    .nav-toggle__bar {
+      background: var(--color-white);
+    }
   }
 
   .site-nav {
@@ -364,34 +422,88 @@ button {
     left: 0;
     right: 0;
     z-index: 1;
-    background: var(--color-nav-bg);
-    border-bottom: 1px solid var(--color-border);
-    padding: var(--space-sm);
-    display: none;
+    display: grid;
+    grid-template-rows: 0fr;
+    background: transparent;
+    padding: 0;
+    transition: grid-template-rows 0.4s ease;
   }
 
   .site-nav.is-open {
-    display: block;
+    grid-template-rows: 1fr;
+  }
+
+  /* Padding and the bottom border live inside this clip.
+     On the grid item itself they stay visible at 0fr, so the
+     drawer jumps open and snaps shut. */
+  .site-nav__clip {
+    min-height: 0;
+    overflow: clip;
   }
 
   .site-nav__list {
     flex-direction: column;
-    align-items: stretch;
-    gap: 0;
+    align-items: flex-start;
+    gap: 0.35rem;
+    width: 100%;
+    margin-top: 0;
+    padding-block: var(--space-sm);
+    padding-inline: 0;
+    background: var(--color-brown-shadow);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .site-nav__list > li {
+    position: relative;
+    width: 100%;
+    padding-left: calc(var(--space-sm) + var(--nav-step) * 1.5rem);
+    padding-right: var(--space-sm);
+    transition: transform 0.2s ease;
+  }
+
+  .site-nav__list > li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0.3rem;
+    background: var(--color-brown-mid);
+    pointer-events: none;
+  }
+
+  .site-nav__list > li:hover,
+  .site-nav__list > li:focus-within {
+    z-index: 1;
+    transform: translateY(-0.35rem);
+  }
+
+  .site-nav__list > li:has(.site-nav__link--active),
+  .site-nav__list > li:has(.site-nav__link--active):hover,
+  .site-nav__list > li:has(.site-nav__link--active):focus-within {
+    z-index: 1;
+    transform: translateY(-0.6rem);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-nav {
+      transition: none;
+    }
   }
 
   .site-nav__link {
-    display: block;
-    padding: var(--space-sm);
-    border-bottom: none;
-    border-left: 3px solid transparent;
+    display: inline-block;
+  }
+
+  .site-nav__link:not(.site-nav__link--active)::after {
+    content: none;
   }
 
   .site-nav__link:hover,
   .site-nav__link:focus-visible,
-  .site-nav__link--active {
-    border-left-color: var(--color-text);
-    border-bottom-color: transparent;
-    background: #f5f5f5;
+  .site-nav__link--active,
+  .site-nav__link--active:hover,
+  .site-nav__link--active:focus-visible {
+    padding-bottom: 0.4rem;
   }
 }

@@ -11,8 +11,20 @@ const links = [
   { to: '/media', label: 'Media' },
 ]
 
+const MOBILE_NAV_QUERY = '(max-width: 767px)'
+
 export default function Nav() {
   const [open, setOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(
+    () => window.matchMedia(MOBILE_NAV_QUERY).matches,
+  )
+
+  useEffect(() => {
+    const media = window.matchMedia(MOBILE_NAV_QUERY)
+    const onChange = () => setIsMobile(media.matches)
+    media.addEventListener('change', onChange)
+    return () => media.removeEventListener('change', onChange)
+  }, [])
 
   // Close on Escape
   useEffect(() => {
@@ -45,10 +57,12 @@ export default function Nav() {
         id="site-nav"
         className={`site-nav${open ? ' is-open' : ''}`}
         aria-label="Main"
+        inert={isMobile && !open ? true : undefined}
       >
+        <div className="site-nav__clip">
         <ul className="site-nav__list">
-          {links.map(({ to, label, end }) => (
-            <li key={to}>
+          {links.map(({ to, label, end }, index) => (
+            <li key={to} style={{ '--nav-step': index } as React.CSSProperties}>
               <NavLink
                 to={to}
                 end={end}
@@ -62,6 +76,7 @@ export default function Nav() {
             </li>
           ))}
         </ul>
+        </div>
       </nav>
     </div>
   )
