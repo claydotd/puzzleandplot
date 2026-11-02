@@ -5,12 +5,9 @@ const asset = (file: string) => `${import.meta.env.BASE_URL}objects/${file}`
 export default function Weddings() {
   return (
     <div className="service-page scatter-page">
-      <img className="scatter scatter--right scatter--out scatter--y-4 scatter--rot-25 scatter--md" src={asset('pin1.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--left scatter--y-12 scatter--rot-neg-15 scatter--md" src={asset('paperclip2.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--left scatter--y-8 scatter--rot-neg-15 scatter--lg" src={asset('paperclip2.png')} alt="" aria-hidden="true" />
       <img className="scatter scatter--right scatter--y-28 scatter--rot-neg-45 scatter--xl" src={asset('key3.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--left scatter--out scatter--y-40 scatter--rot-neg-30 scatter--md" src={asset('fingerprint2.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--right scatter--out scatter--y-52 scatter--rot-neg-5 scatter--sm" src={asset('paperclip4.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--left scatter--y-64 scatter--rot-20 scatter--md" src={asset('pin3.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--left scatter--out scatter--y-52 scatter--rot-neg-30 scatter--lg" src={asset('fingerprint2.png')} alt="" aria-hidden="true" />
 
       <header className="service-hero">
         <h1>Bespoke Wedding Game</h1>

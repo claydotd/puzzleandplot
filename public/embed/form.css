@@ -114,7 +114,8 @@ button {
 }
 
 .enquiry-form__field input,
-.enquiry-form__field select {
+.enquiry-form__field select,
+.enquiry-form__field textarea {
   width: 100%;
   padding: 0.65rem 0.75rem;
   font: inherit;
@@ -124,12 +125,169 @@ button {
   border-radius: 0.25rem;
 }
 
+.enquiry-form__field textarea {
+  resize: vertical;
+  min-height: 4.5rem;
+  line-height: 1.4;
+}
+
+.enquiry-form__hint {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-text-muted);
+}
+
 .enquiry-form__field input:focus-visible,
 .enquiry-form__field select:focus-visible,
+.enquiry-form__field textarea:focus-visible,
 .enquiry-form__check input:focus-visible,
-.enquiry-form__submit:focus-visible {
+.enquiry-form__submit:focus-visible,
+.availability__nav-btn:focus-visible,
+.availability__cell--available:focus-visible {
   outline: 2px solid var(--color-stamp);
   outline-offset: 2px;
+}
+
+/* —— Availability —— */
+.availability {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.55rem 0.65rem;
+  background: color-mix(in srgb, var(--color-paper) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-steel) 55%, transparent);
+}
+
+.availability__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem 0.75rem;
+}
+
+.availability h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--color-stamp);
+}
+
+.availability__nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.availability__month {
+  margin: 0;
+  min-width: 8.5rem;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.availability__nav-btn {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  font-size: 1.05rem;
+  line-height: 1;
+  color: var(--color-stamp);
+  background: transparent;
+  border: 1.5px solid var(--color-stamp);
+  border-radius: 0.25rem;
+}
+
+.availability__nav-btn:hover:not(:disabled) {
+  color: var(--color-redwine);
+  border-color: var(--color-redwine);
+}
+
+.availability__nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.availability__weekdays,
+.availability__grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.15rem;
+}
+
+.availability__weekdays {
+  margin-top: 0;
+}
+
+.availability__weekdays span {
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  line-height: 1.2;
+}
+
+.availability__cell {
+  height: 1.7rem;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1;
+  border-radius: 0.2rem;
+  border: 1.5px solid transparent;
+  background: transparent;
+  color: color-mix(in srgb, var(--color-ink) 35%, transparent);
+}
+
+.availability__cell--pad {
+  visibility: hidden;
+}
+
+.availability__cell--unavailable {
+  cursor: default;
+}
+
+.availability__cell--available {
+  color: var(--color-ink);
+  background: color-mix(in srgb, var(--color-white) 72%, var(--color-brown-paper));
+  border-color: var(--color-steel);
+  cursor: pointer;
+}
+
+.availability__cell--available:hover {
+  color: var(--color-redwine);
+  border-color: var(--color-stamp);
+}
+
+.availability__cell--available.is-selected {
+  color: var(--color-white);
+  background: var(--color-stamp);
+  border-color: var(--color-stamp);
+}
+
+.availability__status {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.availability__status--empty {
+  font-style: italic;
 }
 
 .enquiry-form__check {

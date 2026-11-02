@@ -3,8 +3,8 @@ const asset = (file: string) => `${import.meta.env.BASE_URL}objects/${file}`
 export default function RefundPolicy() {
   return (
     <section className="policy-page scatter-page">
-      <img className="scatter scatter--right scatter--out scatter--y-8 scatter--rot-15 scatter--md" src={asset('key1.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--left scatter--y-24 scatter--rot-neg-20 scatter--sm" src={asset('fingerprint1.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--right scatter--out scatter--y-8 scatter--rot-15 scatter--xl" src={asset('key1.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--left scatter--y-28 scatter--rot-neg-20 scatter--lg" src={asset('fingerprint1.png')} alt="" aria-hidden="true" />
 
       <h1>Refund policy</h1>
       <p>

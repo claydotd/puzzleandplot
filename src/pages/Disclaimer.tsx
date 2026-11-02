@@ -3,8 +3,8 @@ const asset = (file: string) => `${import.meta.env.BASE_URL}objects/${file}`
 export default function Disclaimer() {
   return (
     <section className="policy-page scatter-page">
-      <img className="scatter scatter--left scatter--out scatter--y-4 scatter--rot-neg-15 scatter--md" src={asset('paperclip2.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--right scatter--y-20 scatter--rot-20 scatter--sm" src={asset('pin3.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--left scatter--out scatter--y-8 scatter--rot-neg-15 scatter--xl" src={asset('paperclip2.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--right scatter--y-28 scatter--rot-20 scatter--lg" src={asset('pin3.png')} alt="" aria-hidden="true" />
 
       <h1>Disclaimer</h1>
       <p>

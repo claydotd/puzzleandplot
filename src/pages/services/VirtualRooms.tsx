@@ -7,14 +7,9 @@ const asset = (file: string) => `${import.meta.env.BASE_URL}objects/${file}`
 export default function VirtualRooms() {
   return (
     <div className="service-page scatter-page">
-      <img className="scatter scatter--left scatter--out scatter--y-2 scatter--rot-neg-20 scatter--md" src={asset('paperclip1.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--right scatter--y-12 scatter--rot-15 scatter--xl" src={asset('magnifyingglass.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--left scatter--y-12 scatter--rot-10 scatter--sm" src={asset('pin2.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--right scatter--out scatter--y-40 scatter--rot-neg-25 scatter--md" src={asset('fingerprint1.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--left scatter--out scatter--y-56 scatter--rot-neg-10 scatter--md" src={asset('key2.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--right scatter--y-68 scatter--rot-20 scatter--sm" src={asset('paperclip3.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--left scatter--y-84 scatter--rot-neg-15 scatter--lg" src={asset('fingerprint2.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--right scatter--out scatter--y-96 scatter--rot-5 scatter--xl" src={asset('key1.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--right scatter--y-8 scatter--rot-15 scatter--xl" src={asset('magnifyingglass.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--left scatter--out scatter--y-40 scatter--rot-neg-20 scatter--lg" src={asset('fingerprint1.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--right scatter--out scatter--y-76 scatter--rot-5 scatter--xl" src={asset('key1.png')} alt="" aria-hidden="true" />
 
       <header className="service-hero">
         <h1>Online Virtual Escape Rooms</h1>

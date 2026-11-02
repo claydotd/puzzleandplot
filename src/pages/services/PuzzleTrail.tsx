@@ -5,16 +5,12 @@ const asset = (file: string) => `${import.meta.env.BASE_URL}objects/${file}`
 export default function PuzzleTrail() {
   return (
     <div className="service-page scatter-page">
-      <img className="scatter scatter--left scatter--out scatter--y-2 scatter--rot-25 scatter--lg" src={asset('magnifyingglass.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--right scatter--y-16 scatter--rot-20 scatter--md" src={asset('fingerprint1.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--left scatter--y-28 scatter--rot-15 scatter--sm" src={asset('pin1.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--right scatter--out scatter--y-40 scatter--rot-neg-10 scatter--md" src={asset('paperclip1.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--left scatter--y-52 scatter--rot-neg-20 scatter--md" src={asset('key2.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--left scatter--y-56 scatter--rot-30 scatter--sm" src={asset('paperclip3.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--left scatter--y-76 scatter--rot-5 scatter--lg" src={asset('fingerprint2.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--left scatter--out scatter--y-4 scatter--rot-25 scatter--xl" src={asset('magnifyingglass.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--right scatter--out scatter--y-32 scatter--rot-neg-10 scatter--lg" src={asset('paperclip1.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--left scatter--y-64 scatter--rot-neg-20 scatter--xl" src={asset('key2.png')} alt="" aria-hidden="true" />
 
       <header className="service-hero service-hero--wide">
-        <h1>City Trail: Outdoor escape room</h1>
+        <h1>City Trail: <br />Outdoor escape room</h1>
         <p className="service-price">price: <strong>£35</strong></p>
         <p className="service-stamp">Coming Summer 2027!</p>
       </header>

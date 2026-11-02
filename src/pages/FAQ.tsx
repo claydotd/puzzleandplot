@@ -46,14 +46,9 @@ const asset = (file: string) => `${import.meta.env.BASE_URL}objects/${file}`
 export default function FAQ() {
   return (
     <div className="faq-container scatter-page">
-      <img className="scatter scatter--left scatter--out scatter--y-4 scatter--rot-neg-20 scatter--md" src={asset('paperclip4.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--right scatter--y-16 scatter--rot-15 scatter--sm" src={asset('pin2.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--left scatter--y-32 scatter--rot-neg-10 scatter--lg" src={asset('fingerprint1.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--right scatter--out scatter--y-48 scatter--rot-25 scatter--md" src={asset('key2.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--left scatter--out scatter--y-64 scatter--rot-5 scatter--sm" src={asset('paperclip1.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--right scatter--y-76 scatter--rot-neg-30 scatter--md" src={asset('magnifyingglass.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--left scatter--y-88 scatter--rot-20 scatter--md" src={asset('key1.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--right scatter--out scatter--y-96 scatter--rot-neg-5 scatter--sm" src={asset('pin3.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--left scatter--out scatter--y-8 scatter--rot-neg-20 scatter--lg" src={asset('paperclip4.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--right scatter--out scatter--y-40 scatter--rot-25 scatter--xl" src={asset('key2.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--left scatter--y-76 scatter--rot-45 scatter--lg" src={asset('magnifyingglass.png')} alt="" aria-hidden="true" />
 
       <h1>FAQ</h1>
       <div className="faq-list">

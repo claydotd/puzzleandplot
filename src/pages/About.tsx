@@ -6,10 +6,8 @@ const about = (file: string) => `${import.meta.env.BASE_URL}about/${file}`
 export default function About() {
   return (
     <section className="about-page scatter-page">
-      <img className="scatter scatter--right scatter--out scatter--y-4 scatter--rot-25 scatter--sm" src={object('pin2.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--left scatter--y-20 scatter--rot-neg-20 scatter--md" src={object('fingerprint2.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--right scatter--out scatter--y-56 scatter--rot-neg-15 scatter--md" src={object('key2.png')} alt="" aria-hidden="true" />
-      <img className="scatter scatter--left scatter--out scatter--y-84 scatter--rot-10 scatter--lg" src={object('fingerprint1.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--left scatter--y-16 scatter--rot-neg-20 scatter--xl" src={object('fingerprint2.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--right scatter--out scatter--y-56 scatter--rot-neg-15 scatter--xl" src={object('key2.png')} alt="" aria-hidden="true" />
 
       <header className="about-hero">
         <p className="about-case-label">Case file 001</p>

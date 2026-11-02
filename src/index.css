@@ -216,64 +216,67 @@ button {
   --logo-size-min: min(8.75rem, 46vw);
   /* logo-white.png is 1263×760 */
   --logo-height-ratio: calc(760 / 1263);
+  --logo-h-max: calc(var(--logo-size-max) * var(--logo-height-ratio));
+  --logo-h-min: calc(var(--logo-size-min) * var(--logo-height-ratio));
   --logo-shrink: calc(var(--logo-size-min) / var(--logo-size-max));
-  /* subtitle margin-top + line box — kept in flow, reclaimed via logo-brand margin */
   --tagline-space: calc(0.35rem + 1.5em);
-  --header-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --header-duration: var(--transition-slow);
+  --logo-pad-top: 1.25rem;
+  /* Room for folder tabs that rise out of the nav bar */
+  --logo-pad-bottom: 2.6rem;
+  --logo-pad-top-collapsed: 0.5rem;
+  --logo-pad-bottom-collapsed: 2.35rem;
+  --header-ease: ease-out;
+  --header-duration: 400ms;
   position: sticky;
   top: 0;
   z-index: 100;
   background: var(--color-redwine);
 }
 
-/* Instant height sample for scroll collapse gating (no paint flash). */
-.site-header.is-measuring,
-.site-header.is-measuring * {
-  transition: none !important;
-}
-
 .logo-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
   width: 100%;
-  padding-top: 1.25rem;
-  /* Room for folder tabs that rise out of the nav bar */
-  padding-bottom: 2.6rem;
+  padding-top: var(--logo-pad-top);
+  padding-bottom: var(--logo-pad-bottom);
   padding-inline: var(--space-sm);
   transition: padding var(--header-duration) var(--header-ease);
+}
+
+.site-header.is-collapsed .logo-container {
+  padding-top: var(--logo-pad-top-collapsed);
+  padding-bottom: var(--logo-pad-bottom-collapsed);
 }
 
 .site-logo:hover {
   opacity: 0.8;
 }
 
-.site-header.is-collapsed .logo-container {
-  padding-top: 0.5rem;
-  padding-bottom: 2.35rem;
-}
-
+/*
+  One content-height tween. Logo scales inside; tagline fades and is clipped.
+  No negative-margin reclaim — that was fighting the scale.
+*/
 .logo-brand {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 0;
-  /* One layout tween reclaims scaled-logo leftover + tagline space together */
-  transition: margin-bottom var(--header-duration) var(--header-ease);
+  /* Grow to fit the tagline; logo width is set on .site-logo */
+  width: max-content;
+  max-width: 100%;
+  height: calc(var(--logo-h-max) + var(--tagline-space));
+  overflow: hidden;
+  transition: height var(--header-duration) var(--header-ease);
 }
 
 .site-header.is-collapsed .logo-brand {
-  margin-bottom: calc(
-    (var(--logo-size-min) - var(--logo-size-max)) * var(--logo-height-ratio)
-    - var(--tagline-space)
-  );
+  height: var(--logo-h-min);
 }
 
 .site-logo {
   display: block;
+  flex: 0 0 auto;
   width: var(--logo-size-max);
+  max-width: 100%;
   line-height: 0;
   transform: scale(1);
   transform-origin: top center;
@@ -285,6 +288,7 @@ button {
 }
 
 .site-logo-subtitle {
+  flex: 0 0 auto;
   font-family: var(--font-serif);
   color: var(--color-white);
   font-size: 1rem;
@@ -294,15 +298,12 @@ button {
   white-space: nowrap;
   margin: 0.35rem 0 0;
   opacity: 1;
-  /* Fade only — height stays put; logo-brand margin pulls the space closed.
-     Delay on reappear so the logo grows first; collapse stays immediate. */
-  transition: opacity var(--header-duration) var(--header-ease) 0.2s;
+  transition: opacity calc(var(--header-duration) * 0.6) var(--header-ease);
 }
 
 .site-header.is-collapsed .site-logo-subtitle {
   opacity: 0;
   pointer-events: none;
-  transition-delay: 0s;
 }
 
 .site-logo:focus-visible {
@@ -472,12 +473,9 @@ button {
 
 /* Mobile nav */
 @media (max-width: 799px) {
-  .logo-container {
-    padding-bottom: 0.85rem;
-  }
-
-  .site-header.is-collapsed .logo-container {
-    padding-bottom: 0.4rem;
+  .site-header {
+    --logo-pad-bottom: 0.85rem;
+    --logo-pad-bottom-collapsed: 0.4rem;
   }
 
   .site-nav-bar {
@@ -631,9 +629,9 @@ button {
   - nudge:    scatter--out | scatter--in  (how far into the side margin)
 */
 .scatter {
-  --scatter-size: 4.5rem;
+  --scatter-size: 7rem;
   --scatter-rot: 0deg;
-  --scatter-nudge: -3rem;
+  --scatter-nudge: -4rem;
   position: absolute;
   width: var(--scatter-size);
   height: var(--scatter-size);
@@ -647,16 +645,17 @@ button {
   z-index: 0;
 }
 
-.scatter--sm { --scatter-size: 4rem; }
-.scatter--md { --scatter-size: 6rem; }
-.scatter--lg { --scatter-size: 8rem; }
-.scatter--xl { --scatter-size: 12rem; }
+.scatter--sm { --scatter-size: 6.5rem; }
+.scatter--md { --scatter-size: 9rem; }
+.scatter--lg { --scatter-size: 12rem; }
+.scatter--xl { --scatter-size: 16rem; }
 
-.scatter--out { --scatter-nudge: -5rem; }
+.scatter--out { --scatter-nudge: -7rem; }
 .scatter--in  { --scatter-nudge: 0.35rem; }
 
 .scatter--left {
-  left: var(--scatter-nudge);
+  /* Extra pull into the margin so large objects clear body copy */
+  left: calc(var(--scatter-nudge) - 5rem);
   right: auto;
 }
 
@@ -1306,6 +1305,8 @@ button {
   border: 0;
   background: transparent;
   overflow: hidden;
+  /* Keep the page scroller as the only scroll surface */
+  vertical-align: top;
 }
 
 /* —— FAQ —— */

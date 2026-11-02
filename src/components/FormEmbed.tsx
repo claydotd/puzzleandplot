@@ -1,6 +1,7 @@
 import { useEffect, useId, useState } from 'react'
 
-const FORM_ORIGIN = 'https://agdforms.netlify.app/puzzle-and-plot/'
+const PROD_FORM_HOST = 'https://agdforms.netlify.app'
+const PROD_FORM_PATH = '/puzzle-and-plot/'
 
 type Service = 'online' | 'wedding' | 'city-trail'
 
@@ -10,6 +11,17 @@ type FormEmbedProps = {
   title?: string
 }
 
+function formLocation() {
+  // Local Vite middleware serves the sibling agdforms project (see vite.config.ts).
+  if (import.meta.env.DEV) {
+    return {
+      host: window.location.origin,
+      path: '/__forms/puzzle-and-plot/',
+    }
+  }
+  return { host: PROD_FORM_HOST, path: PROD_FORM_PATH }
+}
+
 function parentBaseUrl() {
   const base = import.meta.env.BASE_URL || '/'
   const normalized = base.endsWith('/') ? base.slice(0, -1) : base
@@ -17,10 +29,11 @@ function parentBaseUrl() {
 }
 
 function formSrc(service?: Service) {
+  const { host, path } = formLocation()
   const params = new URLSearchParams()
   params.set('parent', parentBaseUrl())
   if (service) params.set('service', service)
-  return `${FORM_ORIGIN}/?${params.toString()}`
+  return `${host}${path}?${params.toString()}`
 }
 
 export default function FormEmbed({
@@ -28,14 +41,19 @@ export default function FormEmbed({
   title = 'Enquiry form',
 }: FormEmbedProps) {
   const titleId = useId()
-  const [height, setHeight] = useState(640)
+  // Start unset so the form can measure its natural height before we clamp the frame.
+  const [height, setHeight] = useState<number | null>(null)
   const src = formSrc(service)
 
   useEffect(() => {
     function onMessage(event: MessageEvent) {
-      if (event.origin !== FORM_ORIGIN) return
+      const allowed = new Set([PROD_FORM_HOST, window.location.origin])
+      // postMessage origins never include a path
+      if (!allowed.has(event.origin)) return
       if (event.data?.type !== 'agdforms:resize') return
-      if (typeof event.data.height !== 'number') return
+      if (typeof event.data.height !== 'number' || !Number.isFinite(event.data.height)) {
+        return
+      }
       setHeight(Math.max(320, Math.ceil(event.data.height)))
     }
 
@@ -53,7 +71,7 @@ export default function FormEmbed({
         title={title}
         src={src}
         loading="lazy"
-        style={{ height: `${height}px` }}
+        style={{ height: height == null ? '0px' : `${height}px` }}
       />
     </section>
   )
