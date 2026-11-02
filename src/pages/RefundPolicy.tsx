@@ -16,7 +16,7 @@ export default function RefundPolicy() {
         balance deadlines will be confirmed when your enquiry is accepted.
       </p>
       <p>
-        This page is a working draft — final refund and cancellation wording can be updated before
+        This page is a working draft, final refund and cancellation wording can be updated before
         launch.
       </p>
     </section>

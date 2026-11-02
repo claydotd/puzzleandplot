@@ -14,11 +14,9 @@ export default function Disclaimer() {
       </p>
       <p>
         Online games require a stable internet connection and a device suitable for video calling.
-        Content may include mild language, spooky themes, or light tension depending on the game
-        chosen.
       </p>
       <p>
-        This page is a working draft — final wording can be updated before launch.
+        This page is a working draft, final wording can be updated before launch.
       </p>
     </section>
   )
