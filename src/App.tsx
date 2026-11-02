@@ -2,9 +2,11 @@ import { Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import Disclaimer from './pages/Disclaimer'
 import Home from './pages/Home'
 import Media from './pages/Media'
 import FAQ from './pages/FAQ'
+import RefundPolicy from './pages/RefundPolicy'
 import Weddings from './pages/services/Weddings'
 import VirtualRooms from './pages/services/VirtualRooms'
 import PuzzleTrail from './pages/services/PuzzleTrail'
@@ -16,6 +18,8 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="disclaimer" element={<Disclaimer />} />
+        <Route path="refund-policy" element={<RefundPolicy />} />
         <Route path="media" element={<Media />} />
         <Route path="faq" element={<FAQ />} />
         <Route path="/weddings" element={<Weddings />} />

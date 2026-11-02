@@ -40,9 +40,21 @@ const faq = [
     answer: 'Look, jokes aside, I know money is tight for many people now. And with the way the world is going it might not get any better any time soon so that\'s why I believe finding pockets of joy and having fun with people you love shouldn’t be a privilege only reserved for a chosen few. I pride myself on charging per group and not per person, making it more affordable. I also offer [to be confirmed] % of your first game when signing up for my mailing list, run regular promotions and even have a Puzzle & Plot Partnership Programme coming soon! (Bespoke wedding game not included).'
   }
 ]
+
+const asset = (file: string) => `${import.meta.env.BASE_URL}objects/${file}`
+
 export default function FAQ() {
   return (
-    <div className="faq-container">
+    <div className="faq-container scatter-page">
+      <img className="scatter scatter--left scatter--out scatter--y-4 scatter--rot-neg-20 scatter--md" src={asset('paperclip4.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--right scatter--y-16 scatter--rot-15 scatter--sm" src={asset('pin2.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--left scatter--y-32 scatter--rot-neg-10 scatter--lg" src={asset('fingerprint1.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--right scatter--out scatter--y-48 scatter--rot-25 scatter--md" src={asset('key2.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--left scatter--out scatter--y-64 scatter--rot-5 scatter--sm" src={asset('paperclip1.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--right scatter--y-76 scatter--rot-neg-30 scatter--md" src={asset('magnifyingglass.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--left scatter--y-88 scatter--rot-20 scatter--md" src={asset('key1.png')} alt="" aria-hidden="true" />
+      <img className="scatter scatter--right scatter--out scatter--y-96 scatter--rot-neg-5 scatter--sm" src={asset('pin3.png')} alt="" aria-hidden="true" />
+
       <h1>FAQ</h1>
       <div className="faq-list">
         {faq.map((item) => (
