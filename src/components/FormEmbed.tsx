@@ -1,6 +1,6 @@
 import { useEffect, useId, useState } from 'react'
 
-const FORM_ORIGIN = 'https://agdforms.netlify.app/puzzle-plot/'
+const FORM_ORIGIN = 'https://agdforms.netlify.app/puzzle-and-plot/'
 
 type Service = 'online' | 'wedding' | 'city-trail'
 
